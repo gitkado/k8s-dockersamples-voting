@@ -38,7 +38,10 @@ spec:
         app.kubernetes.io/part-of: examplevotingapp
     spec:
       containers:
-      - name: vote-db
+      - envFrom:
+        - configMapRef:
+            name: vote-db-configmap
+        name: vote-db
         image: postgres:9.4
         resources:
           limits:
