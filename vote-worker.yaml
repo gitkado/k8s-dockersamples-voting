@@ -24,8 +24,8 @@ spec:
         image: dockersamples/examplevotingapp_worker
         resources:
           limits:
-            memory: "128Mi"
-            cpu: "500m"
+            memory: "64Mi"
+            cpu: "100m"
 ---
 apiVersion: policy/v1
 kind: PodDisruptionBudget
