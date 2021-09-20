@@ -1,36 +1,27 @@
-# NOTE: M1だと使えないのでコメントアウト
-#
-# apiVersion: networking.k8s.io/v1
-# kind: Ingress
-# metadata:
-#   name: vote-ingress
-#   labels:
-#     app.kubernetes.io/name: vote-ingress
-#     app.kubernetes.io/component: load-balancer
-#     app.kubernetes.io/part-of: examplevotingapp
-# spec:
-#   rules:
-#   - host: localhost
-#     http:
-#       paths:
-#       - pathType: Prefix
-#         path: "/"
-#         backend:
-#           service:
-#             name: vote-app
-#             port: 
-#               number: 5000
-#       - pathType: Prefix
-#         path: "/result"
-#         backend:
-#           service:
-#             name: vote-result
-#             port: 
-#               number: 5001
-#       - pathType: Prefix
-#         path: "/visualizer"
-#         backend:
-#           service:
-#             name: vote-visualizer
-#             port: 
-#               number: 8080
+apiVersion: networking.k8s.io/v1
+kind: Ingress
+metadata:
+  name: vote-ingress
+  labels:
+    app.kubernetes.io/name: vote-ingress
+    app.kubernetes.io/component: load-balancer
+    app.kubernetes.io/part-of: examplevotingapp
+spec:
+  rules:
+  - http:
+      paths:
+      - pathType: Prefix
+        path: "/"
+        backend:
+          service:
+            name: vote-app
+            port: 
+              number: 5000
+      # NOTE: 無償版NginxIngressだとMultiPathが正常に動作しないらしい
+      # - pathType: Prefix
+      #   path: "/result"
+      #   backend:
+      #     service:
+      #       name: vote-result
+      #       port: 
+      #         number: 5001
